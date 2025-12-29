@@ -91,7 +91,7 @@ async def load_users() -> Dict[str, Any]:
         users[uid] = {k: v for k, v in doc.items() if k != "_id"}
     return users
 
-async def save_users( Dict[str, Any]):
+async def save_users( Dict[str, Any]) -> None:
     loop = asyncio.get_event_loop()
     for uid, user_data in data.items():
         await loop.run_in_executor(
@@ -561,4 +561,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
