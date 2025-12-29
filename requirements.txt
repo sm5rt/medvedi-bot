@@ -1,3 +1,0 @@
-pymongo[srv]==4.8.0
-python-telegram-bot==20.7
-requests
