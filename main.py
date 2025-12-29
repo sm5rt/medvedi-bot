@@ -96,7 +96,7 @@ async def save_users(data: Dict[str, Any]) -> None:
     for uid, user_data in data.items():
         await loop.run_in_executor(
             None,
-            lambda u=uid, d=user_ users_col.replace_one({"_id": u}, d, upsert=True)
+            lambda u=uid, d=user_data: users_col.replace_one({"_id": u}, d, upsert=True)
         )
 
 async def load_club_history() -> list:
@@ -293,7 +293,7 @@ async def register(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     player = r.json()
-    if uid not in 
+    if uid not in data:
         data[uid] = {
             "real_name": real_name,
             "player_tag": tag,
@@ -321,7 +321,7 @@ async def register(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def club(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uid = str(update.effective_user.id)
     data = await load_users()
-    if uid not in 
+    if uid not in data:
         await send_with_photo(update, context, "❌ Сначала зарегистрируйся в клубе: <code>/register</code>", "club.jpg")
         return
     u = data[uid]
@@ -361,7 +361,7 @@ async def club(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def you_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = await load_users()
-    if not 
+    if not data:
         await send_with_photo(update, context, "❌ В боте ещё никто не зарегистрирован.", "you.jpg")
         return
     if not context.args:
@@ -561,6 +561,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
