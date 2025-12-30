@@ -46,8 +46,8 @@ def days_since(join_datetime_str: str) -> int:
     join_dt = datetime.fromisoformat(join_datetime_str)
     return (datetime.now(timezone.utc) - join_dt).days
 
-def get_player_norm(user_ dict) -> int:
-    return user_data.get("custom_norm", NORM)
+def get_player_norm(user_ Dict[str, Any]) -> int:
+    return user_dict.get("custom_norm", NORM)
 
 def get_club_members():
     """Получает список участников клуба — БЕЗ пробелов в URL!"""
@@ -557,3 +557,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
