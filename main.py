@@ -448,7 +448,7 @@ async def club(update: Update, context: ContextTypes.DEFAULT_TYPE):
         trophies = cache["trophies"]
         progress = trophies - u["season_start_trophies"]
         norm = get_player_norm(u)
-       percent = min(int(progress / norm * 100), 100) if norm > 0 else 0
+        percent = min(int(progress / norm * 100), 100) if norm > 0 else 0
         done = "✅ Да" if progress >= norm else "❌ Нет"
         days, hours = season_time_left()
         days_in_bot = days_since(u["join_bot"])
@@ -694,3 +694,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
